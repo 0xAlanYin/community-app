@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社区 - AI破局俱乐部</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <!-- iOS 状态栏 -->
+    <div class="h-[44px] bg-black text-white text-xs flex items-center justify-between px-4">
+        <div class="flex items-center space-x-2">
+            <span>9:41</span>
+        </div>
+        <div class="flex items-center space-x-1">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+
+    <!-- 导航栏 -->
+    <div class="bg-white border-b border-gray-200">
+        <div class="px-4 py-3">
+            <h1 class="text-xl font-semibold text-gray-900">AI社区</h1>
+        </div>
+    </div>
+
+    <!-- 主要内容区域 -->
+    <div class="overflow-y-auto h-[calc(100vh-44px-52px-83px)]">
+        <!-- 社区分类 -->
+        <div class="flex space-x-4 p-4 overflow-x-auto">
+            <button class="px-4 py-2 bg-primary text-white rounded-full text-sm whitespace-nowrap">全部</button>
+            <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm whitespace-nowrap">技术分享</button>
+            <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm whitespace-nowrap">创业经验</button>
+            <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm whitespace-nowrap">项目展示</button>
+        </div>
+
+        <!-- 发帖按钮 -->
+        <div class="px-4 mb-4">
+            <button class="w-full bg-primary text-white py-3 rounded-xl flex items-center justify-center space-x-2">
+                <i class="fas fa-plus"></i>
+                <span>发布动态</span>
+            </button>
+        </div>
+
+        <!-- 动态列表 -->
+        <div class="px-4 space-y-4">
+            <!-- 动态卡片 1 -->
+            <div class="bg-white rounded-xl p-4 shadow-sm">
+                <div class="flex items-center space-x-3">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e" 
+                         class="w-10 h-10 rounded-full" alt="用户头像">
+                    <div>
+                        <h4 class="font-medium text-gray-900">AI破局行动家</h4>
+                        <p class="text-sm text-gray-500">2小时前</p>
+                    </div>
+                </div>
+                <p class="mt-3 text-gray-700">分享一个AI创业小技巧：在开发AI应用时，建议先从小场景切入，快速验证产品可行性。比如我们最近开发的AI写作助手，就是从写朋友圈文案这个场景开始的。</p>
+                <div class="mt-3 flex items-center space-x-4 text-gray-500">
+                    <button class="flex items-center space-x-1">
+                        <i class="far fa-heart"></i>
+                        <span class="text-sm">128</span>
+                    </button>
+                    <button class="flex items-center space-x-1">
+                        <i class="far fa-comment"></i>
+                        <span class="text-sm">32</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 动态卡片 2 -->
+            <div class="bg-white rounded-xl p-4 shadow-sm">
+                <div class="flex items-center space-x-3">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e" 
+                         class="w-10 h-10 rounded-full" alt="用户头像">
+                    <div>
+                        <h4 class="font-medium text-gray-900">AI创业者</h4>
+                        <p class="text-sm text-gray-500">4小时前</p>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995" 
+                         class="w-full rounded-lg" alt="项目展示">
+                </div>
+                <p class="mt-3 text-gray-700">我们的AI图像生成项目终于上线了！欢迎大家体验和反馈。</p>
+                <div class="mt-3 flex items-center space-x-4 text-gray-500">
+                    <button class="flex items-center space-x-1">
+                        <i class="far fa-heart"></i>
+                        <span class="text-sm">256</span>
+                    </button>
+                    <button class="flex items-center space-x-1">
+                        <i class="far fa-comment"></i>
+                        <span class="text-sm">48</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 动态卡片 3 -->
+            <div class="bg-white rounded-xl p-4 shadow-sm">
+                <div class="flex items-center space-x-3">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e" 
+                         class="w-10 h-10 rounded-full" alt="用户头像">
+                    <div>
+                        <h4 class="font-medium text-gray-900">AI技术专家</h4>
+                        <p class="text-sm text-gray-500">6小时前</p>
+                    </div>
+                </div>
+                <p class="mt-3 text-gray-700">最近在研究GPT-4的API应用，发现它的代码生成能力真的很强大。分享一个使用GPT-4生成React组件的示例代码，希望对大家有帮助！</p>
+                <div class="mt-3 bg-gray-50 p-3 rounded-lg">
+                    <pre class="text-sm text-gray-600">const MyComponent = () => {
+  return (
+    <div>Hello World</div>
+  );
+};</pre>
+                </div>
+                <div class="mt-3 flex items-center space-x-4 text-gray-500">
+                    <button class="flex items-center space-x-1">
+                        <i class="far fa-heart"></i>
+                        <span class="text-sm">89</span>
+                    </button>
+                    <button class="flex items-center space-x-1">
+                        <i class="far fa-comment"></i>
+                        <span class="text-sm">23</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部导航栏 -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
+        <div class="flex justify-around items-center h-[83px]">
+            <button class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-home text-xl"></i>
+                <span class="text-xs mt-1">首页</span>
+            </button>
+            <button class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-book text-xl"></i>
+                <span class="text-xs mt-1">课程</span>
+            </button>
+            <button class="flex flex-col items-center text-primary">
+                <i class="fas fa-users text-xl"></i>
+                <span class="text-xs mt-1">社区</span>
+            </button>
+            <button class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-user text-xl"></i>
+                <span class="text-xs mt-1">我的</span>
+            </button>
+        </div>
+    </div>
+</body>
+</html> 

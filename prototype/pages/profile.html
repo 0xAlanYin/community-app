@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的 - AI破局俱乐部</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <!-- iOS 状态栏 -->
+    <div class="h-[44px] bg-black text-white text-xs flex items-center justify-between px-4">
+        <div class="flex items-center space-x-2">
+            <span>9:41</span>
+        </div>
+        <div class="flex items-center space-x-1">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+
+    <!-- 导航栏 -->
+    <div class="bg-white border-b border-gray-200">
+        <div class="px-4 py-3">
+            <h1 class="text-xl font-semibold text-gray-900">我的</h1>
+        </div>
+    </div>
+
+    <!-- 主要内容区域 -->
+    <div class="overflow-y-auto h-[calc(100vh-44px-52px-83px)]">
+        <!-- 用户信息卡片 -->
+        <div class="bg-white p-4">
+            <div class="flex items-center space-x-4">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e" 
+                     class="w-20 h-20 rounded-full" alt="用户头像">
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-900">AI破局行动家</h2>
+                    <p class="text-sm text-gray-500">AI创业者 | 技术专家</p>
+                </div>
+            </div>
+            <div class="mt-4 flex space-x-4">
+                <div class="text-center">
+                    <div class="text-lg font-semibold text-gray-900">128</div>
+                    <div class="text-sm text-gray-500">关注</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-lg font-semibold text-gray-900">256</div>
+                    <div class="text-sm text-gray-500">粉丝</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-lg font-semibold text-gray-900">32</div>
+                    <div class="text-sm text-gray-500">动态</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 功能列表 -->
+        <div class="mt-4 bg-white">
+            <div class="p-4">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">我的服务</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <button class="flex flex-col items-center p-4 bg-gray-50 rounded-xl">
+                        <i class="fas fa-book text-2xl text-primary mb-2"></i>
+                        <span class="text-sm text-gray-700">我的课程</span>
+                    </button>
+                    <button class="flex flex-col items-center p-4 bg-gray-50 rounded-xl">
+                        <i class="fas fa-star text-2xl text-primary mb-2"></i>
+                        <span class="text-sm text-gray-700">我的收藏</span>
+                    </button>
+                    <button class="flex flex-col items-center p-4 bg-gray-50 rounded-xl">
+                        <i class="fas fa-history text-2xl text-primary mb-2"></i>
+                        <span class="text-sm text-gray-700">浏览历史</span>
+                    </button>
+                    <button class="flex flex-col items-center p-4 bg-gray-50 rounded-xl">
+                        <i class="fas fa-ticket-alt text-2xl text-primary mb-2"></i>
+                        <span class="text-sm text-gray-700">我的优惠券</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 设置列表 -->
+        <div class="mt-4 bg-white">
+            <div class="p-4">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">设置</h3>
+                <div class="space-y-2">
+                    <button class="w-full flex items-center justify-between p-3 bg-gray-50 rounded-xl">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-cog text-gray-500"></i>
+                            <span class="text-gray-700">账号设置</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400"></i>
+                    </button>
+                    <button class="w-full flex items-center justify-between p-3 bg-gray-50 rounded-xl">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-bell text-gray-500"></i>
+                            <span class="text-gray-700">消息通知</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400"></i>
+                    </button>
+                    <button class="w-full flex items-center justify-between p-3 bg-gray-50 rounded-xl">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-shield-alt text-gray-500"></i>
+                            <span class="text-gray-700">隐私设置</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400"></i>
+                    </button>
+                    <button class="w-full flex items-center justify-between p-3 bg-gray-50 rounded-xl">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-question-circle text-gray-500"></i>
+                            <span class="text-gray-700">帮助与反馈</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400"></i>
+                    </button>
+                    <button class="w-full flex items-center justify-between p-3 bg-gray-50 rounded-xl">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-info-circle text-gray-500"></i>
+                            <span class="text-gray-700">关于我们</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部导航栏 -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
+        <div class="flex justify-around items-center h-[83px]">
+            <button class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-home text-xl"></i>
+                <span class="text-xs mt-1">首页</span>
+            </button>
+            <button class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-book text-xl"></i>
+                <span class="text-xs mt-1">课程</span>
+            </button>
+            <button class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-users text-xl"></i>
+                <span class="text-xs mt-1">社区</span>
+            </button>
+            <button class="flex flex-col items-center text-primary">
+                <i class="fas fa-user text-xl"></i>
+                <span class="text-xs mt-1">我的</span>
+            </button>
+        </div>
+    </div>
+</body>
+</html> 
