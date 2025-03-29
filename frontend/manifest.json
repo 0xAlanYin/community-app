@@ -1,7 +1,7 @@
 {
-    "name" : "AI破局俱乐部",
+    "name" : "frontend",
     "appid" : "",
-    "description" : "AI破局俱乐部小程序",
+    "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
     "transformPx" : false,
@@ -52,17 +52,9 @@
     "mp-weixin" : {
         "appid" : "",
         "setting" : {
-            "urlCheck" : false,
-            "es6": true,
-            "postcss": true,
-            "minified": true
+            "urlCheck" : false
         },
-        "usingComponents" : true,
-        "permission": {
-            "scope.userLocation": {
-                "desc": "你的位置信息将用于小程序位置接口的效果展示"
-            }
-        }
+        "usingComponents" : true
     },
     "mp-alipay" : {
         "usingComponents" : true

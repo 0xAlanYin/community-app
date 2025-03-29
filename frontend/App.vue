@@ -13,16 +13,10 @@ export default {
 </script>
 
 <style>
-@import "@/static/fonts/iconfont.css";
+@import "./static/iconfont/iconfont.css";
 
-/* 全局样式 */
+/*每个页面公共css */
 page {
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica,
-    Segoe UI, Arial, Roboto, "PingFang SC", "miui", "Hiragino Sans GB",
-    "Microsoft Yahei", sans-serif;
-  font-size: 28rpx;
-  line-height: 1.5;
-  color: #333;
-  background-color: #f5f5f5;
+  background-color: #f8f8f8;
 }
 </style>

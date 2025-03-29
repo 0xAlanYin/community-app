@@ -1,0 +1,1 @@
+{"version":3,"file":"courses.js","sources":["pages/courses/courses.vue?type=page"],"sourcesContent":["import MiniProgramPage from '/Users/xingyin/ai/community-app/frontend/pages/courses/courses.vue'\nwx.createPage(MiniProgramPage)"],"names":["MiniProgramPage"],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AACA,GAAG,WAAWA,SAAe;"}

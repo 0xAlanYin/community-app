@@ -1,402 +1,314 @@
 <template>
   <view class="container">
-    <!-- 顶部轮播图 -->
-    <swiper
-      class="banner"
-      circular
-      :indicator-dots="true"
-      :autoplay="true"
-      :interval="3000"
-      :duration="1000"
-    >
-      <swiper-item v-for="(item, index) in banners" :key="index">
-        <image :src="item.image" mode="aspectFill" class="banner-image" />
-      </swiper-item>
-    </swiper>
+    <!-- 状态栏 -->
+    <view class="status-bar">
+      <view class="status-bar-left">
+        <text class="time">9:41</text>
+      </view>
+      <view class="status-bar-right">
+        <text class="iconfont icon-signal"></text>
+        <text class="iconfont icon-wifi"></text>
+        <text class="iconfont icon-battery"></text>
+      </view>
+    </view>
 
-    <!-- 功能导航 -->
-    <view class="nav-section">
-      <view
-        class="nav-item"
-        v-for="(item, index) in navItems"
-        :key="index"
-        @tap="navigateTo(item.path)"
+    <!-- 导航栏 -->
+    <view class="nav-bar">
+      <text class="title">AI破局俱乐部</text>
+    </view>
+
+    <!-- 主要内容区域 -->
+    <scroll-view scroll-y class="content">
+      <!-- 轮播图 -->
+      <swiper
+        class="banner"
+        :indicator-dots="true"
+        :autoplay="true"
+        :interval="3000"
+        :duration="1000"
       >
-        <image :src="item.icon" mode="aspectFit" class="nav-icon" />
-        <text class="nav-text">{{ item.text }}</text>
-      </view>
-    </view>
-
-    <!-- 即将开始的活动 -->
-    <view class="section">
-      <view class="section-header">
-        <text class="section-title">即将开始</text>
-        <text class="more" @tap="navigateTo('/pages/activity/list')">更多</text>
-      </view>
-      <view class="activity-list">
-        <view
-          class="activity-item"
-          v-for="activity in upcomingActivities"
-          :key="activity.id"
-          @tap="navigateToActivity(activity.id)"
-        >
+        <swiper-item>
           <image
-            :src="activity.coverImage"
+            src="/static/banner/ai-banner.jpg"
             mode="aspectFill"
-            class="activity-image"
-          />
-          <view class="activity-info">
-            <text class="activity-title">{{ activity.title }}</text>
-            <view class="activity-meta">
-              <text class="activity-time">{{
-                formatTime(activity.startTime)
-              }}</text>
-              <text class="activity-location">{{ activity.location }}</text>
-            </view>
-            <view class="activity-status">
-              <text class="status-text">{{
-                activity.status === "upcoming" ? "即将开始" : "进行中"
-              }}</text>
-              <text class="participants"
-                >{{ activity.currentParticipants }}/{{
-                  activity.maxParticipants
-                }}</text
-              >
-            </view>
+            class="banner-image"
+          ></image>
+          <view class="banner-content">
+            <text class="banner-title">AI破局行动家</text>
+            <text class="banner-subtitle">开启你的AI创业之旅</text>
           </view>
-        </view>
-      </view>
-    </view>
+        </swiper-item>
+      </swiper>
 
-    <!-- 社区动态 -->
-    <view class="section">
-      <view class="section-header">
-        <text class="section-title">社区动态</text>
-        <text class="more" @tap="navigateTo('/pages/community/index')"
-          >更多</text
-        >
-      </view>
-      <view class="community-list">
+      <!-- 功能卡片 -->
+      <view class="feature-grid">
         <view
-          class="community-item"
-          v-for="(item, index) in communityPosts"
+          class="feature-item"
+          v-for="(item, index) in features"
           :key="index"
         >
-          <view class="post-header">
-            <image :src="item.avatar" mode="aspectFill" class="avatar" />
-            <view class="post-info">
-              <text class="username">{{ item.username }}</text>
-              <text class="time">{{ item.time }}</text>
-            </view>
+          <view class="feature-icon" :style="{ backgroundColor: item.bgColor }">
+            <text class="iconfont" :class="item.icon"></text>
           </view>
-          <text class="post-content">{{ item.content }}</text>
-          <view class="post-images" v-if="item.images && item.images.length">
-            <image
-              v-for="(image, imgIndex) in item.images"
-              :key="imgIndex"
-              :src="image"
-              mode="aspectFill"
-              class="post-image"
-            />
-          </view>
-          <view class="post-footer">
-            <view class="action-item">
-              <text class="iconfont icon-like"></text>
-              <text>{{ item.likes }}</text>
+          <text class="feature-title">{{ item.title }}</text>
+          <text class="feature-desc">{{ item.desc }}</text>
+        </view>
+      </view>
+
+      <!-- 最新动态 -->
+      <view class="news-section">
+        <text class="section-title">最新动态</text>
+        <view class="news-list">
+          <view class="news-item" v-for="(item, index) in news" :key="index">
+            <view class="news-header">
+              <image
+                :src="item.avatar"
+                mode="aspectFill"
+                class="avatar"
+              ></image>
+              <view class="user-info">
+                <text class="username">{{ item.username }}</text>
+                <text class="time">{{ item.time }}</text>
+              </view>
             </view>
-            <view class="action-item">
-              <text class="iconfont icon-comment"></text>
-              <text>{{ item.comments }}</text>
+            <text class="news-content">{{ item.content }}</text>
+            <view class="news-footer">
+              <view class="action-btn">
+                <text class="iconfont icon-heart"></text>
+                <text class="count">{{ item.likes }}</text>
+              </view>
+              <view class="action-btn">
+                <text class="iconfont icon-comment"></text>
+                <text class="count">{{ item.comments }}</text>
+              </view>
             </view>
           </view>
         </view>
       </view>
-    </view>
+    </scroll-view>
   </view>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { useActivityStore } from "@/stores/activity";
-import dayjs from "dayjs";
+import { ref } from "vue";
 
-const activityStore = useActivityStore();
-
-// 轮播图数据
-const banners = ref([
-  { image: "/static/images/banner/1.jpg" },
-  { image: "/static/images/banner/2.jpg" },
-  { image: "/static/images/banner/3.jpg" },
-]);
-
-// 导航菜单
-const navItems = ref([
+const features = ref([
   {
-    icon: "/static/images/nav/activity.png",
-    text: "活动",
-    path: "/pages/activity/list",
+    icon: "icon-graduation-cap",
+    title: "AI课程",
+    desc: "系统学习AI知识",
+    bgColor: "#E3F2FD",
   },
   {
-    icon: "/static/images/nav/community.png",
-    text: "社区",
-    path: "/pages/community/index",
+    icon: "icon-users",
+    title: "AI社群",
+    desc: "加入AI创业者圈子",
+    bgColor: "#F3E5F5",
   },
   {
-    icon: "/static/images/nav/course.png",
-    text: "课程",
-    path: "/pages/course/index",
+    icon: "icon-lightbulb",
+    title: "AI项目",
+    desc: "实战AI创业项目",
+    bgColor: "#E8F5E9",
   },
   {
-    icon: "/static/images/nav/profile.png",
-    text: "我的",
-    path: "/pages/profile/index",
+    icon: "icon-chart-line",
+    title: "AI咨询",
+    desc: "专业AI创业指导",
+    bgColor: "#FFF3E0",
   },
 ]);
 
-// 即将开始的活动
-const upcomingActivities = ref([]);
-
-// 社区动态
-const communityPosts = ref([
+const news = ref([
   {
-    avatar: "/static/images/avatar/1.jpg",
-    username: "AI创业者",
-    time: "10分钟前",
-    content: "参加了AI创业实战营，收获很多！",
-    images: ["/static/images/post/1.jpg"],
-    likes: 12,
-    comments: 3,
-  },
-  {
-    avatar: "/static/images/avatar/2.jpg",
-    username: "技术专家",
-    time: "30分钟前",
-    content: "分享一个AI技术实践案例...",
-    images: ["/static/images/post/2.jpg", "/static/images/post/3.jpg"],
-    likes: 8,
-    comments: 5,
+    avatar: "/static/avatar/user1.jpg",
+    username: "AI破局行动家",
+    time: "2小时前",
+    content:
+      "🎉 欢迎加入AI破局俱乐部！这里有最前沿的AI技术分享，最实用的创业经验，让我们一起在AI时代创造价值！",
+    likes: 128,
+    comments: 32,
   },
 ]);
-
-// 格式化时间
-const formatTime = (time) => {
-  return dayjs(time).format("MM-DD HH:mm");
-};
-
-// 页面跳转
-const navigateTo = (path) => {
-  uni.navigateTo({ url: path });
-};
-
-// 跳转到活动详情
-const navigateToActivity = (id) => {
-  uni.navigateTo({ url: `/pages/activity/detail?id=${id}` });
-};
-
-// 获取即将开始的活动
-const getUpcomingActivities = async () => {
-  const activities = await activityStore.getUpcomingActivities();
-  upcomingActivities.value = activities;
-};
-
-onMounted(() => {
-  getUpcomingActivities();
-});
 </script>
 
 <style lang="scss">
 .container {
   min-height: 100vh;
-  background-color: #f5f5f5;
+  background-color: #f8f8f8;
+}
+
+.status-bar {
+  height: 44px;
+  background-color: #000;
+  color: #fff;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.nav-bar {
+  height: 52px;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+
+  .title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+  }
+}
+
+.content {
+  height: calc(100vh - 44px - 52px - 83px);
 }
 
 .banner {
-  height: 350rpx;
+  height: 200px;
+  position: relative;
 
   .banner-image {
     width: 100%;
     height: 100%;
   }
-}
 
-.nav-section {
-  display: flex;
-  justify-content: space-around;
-  padding: 30rpx;
-  background-color: #fff;
-  margin-bottom: 20rpx;
+  .banner-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
 
-  .nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .nav-icon {
-      width: 80rpx;
-      height: 80rpx;
-      margin-bottom: 10rpx;
-    }
-
-    .nav-text {
-      font-size: 24rpx;
-      color: #333;
-    }
-  }
-}
-
-.section {
-  background-color: #fff;
-  margin-bottom: 20rpx;
-  padding: 20rpx;
-
-  .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20rpx;
-
-    .section-title {
-      font-size: 32rpx;
+    .banner-title {
+      color: #fff;
+      font-size: 20px;
       font-weight: bold;
-      color: #333;
     }
 
-    .more {
-      font-size: 24rpx;
-      color: #999;
-    }
-  }
-}
-
-.activity-list {
-  .activity-item {
-    display: flex;
-    padding: 20rpx 0;
-    border-bottom: 1rpx solid #eee;
-
-    &:last-child {
-      border-bottom: none;
-    }
-
-    .activity-image {
-      width: 200rpx;
-      height: 150rpx;
-      border-radius: 8rpx;
-      margin-right: 20rpx;
-    }
-
-    .activity-info {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-
-      .activity-title {
-        font-size: 28rpx;
-        color: #333;
-        margin-bottom: 10rpx;
-      }
-
-      .activity-meta {
-        font-size: 24rpx;
-        color: #666;
-
-        .activity-time {
-          margin-right: 20rpx;
-        }
-      }
-
-      .activity-status {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        .status-text {
-          font-size: 24rpx;
-          color: #018eff;
-        }
-
-        .participants {
-          font-size: 24rpx;
-          color: #999;
-        }
-      }
+    .banner-subtitle {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 14px;
+      margin-top: 4px;
     }
   }
 }
 
-.community-list {
-  .community-item {
-    padding: 20rpx 0;
-    border-bottom: 1rpx solid #eee;
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  padding: 16px;
 
-    &:last-child {
-      border-bottom: none;
-    }
+  .feature-item {
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 
-    .post-header {
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
-      margin-bottom: 20rpx;
+      justify-content: center;
+      margin-bottom: 12px;
 
-      .avatar {
-        width: 80rpx;
-        height: 80rpx;
-        border-radius: 50%;
-        margin-right: 20rpx;
-      }
-
-      .post-info {
-        .username {
-          font-size: 28rpx;
-          color: #333;
-          margin-bottom: 4rpx;
-        }
-
-        .time {
-          font-size: 24rpx;
-          color: #999;
-        }
+      .iconfont {
+        font-size: 24px;
+        color: #007aff;
       }
     }
 
-    .post-content {
-      font-size: 28rpx;
+    .feature-title {
+      font-size: 16px;
+      font-weight: 600;
       color: #333;
-      margin-bottom: 20rpx;
     }
 
-    .post-images {
-      display: flex;
-      flex-wrap: wrap;
-      margin-bottom: 20rpx;
-
-      .post-image {
-        width: 220rpx;
-        height: 220rpx;
-        margin-right: 10rpx;
-        margin-bottom: 10rpx;
-        border-radius: 8rpx;
-      }
+    .feature-desc {
+      font-size: 14px;
+      color: #666;
+      margin-top: 4px;
     }
+  }
+}
 
-    .post-footer {
-      display: flex;
+.news-section {
+  padding: 16px;
 
-      .action-item {
+  .section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 16px;
+  }
+
+  .news-list {
+    .news-item {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+      .news-header {
         display: flex;
         align-items: center;
-        margin-right: 30rpx;
+        margin-bottom: 12px;
 
-        .iconfont {
-          font-size: 32rpx;
-          color: #999;
-          margin-right: 8rpx;
+        .avatar {
+          width: 40px;
+          height: 40px;
+          border-radius: 20px;
+          margin-right: 12px;
         }
 
-        text {
-          font-size: 24rpx;
-          color: #999;
+        .user-info {
+          .username {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+          }
+
+          .time {
+            font-size: 12px;
+            color: #999;
+            margin-top: 2px;
+          }
+        }
+      }
+
+      .news-content {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.5;
+      }
+
+      .news-footer {
+        display: flex;
+        margin-top: 12px;
+        color: #999;
+
+        .action-btn {
+          display: flex;
+          align-items: center;
+          margin-right: 16px;
+
+          .iconfont {
+            font-size: 16px;
+            margin-right: 4px;
+          }
+
+          .count {
+            font-size: 12px;
+          }
         }
       }
     }

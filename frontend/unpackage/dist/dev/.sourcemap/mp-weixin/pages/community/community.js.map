@@ -1,0 +1,1 @@
+{"version":3,"file":"community.js","sources":["pages/community/community.vue?type=page"],"sourcesContent":["import MiniProgramPage from '/Users/xingyin/ai/community-app/frontend/pages/community/community.vue'\nwx.createPage(MiniProgramPage)"],"names":["MiniProgramPage"],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AACA,GAAG,WAAWA,SAAe;"}
